@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.spec.app }}-deployment
-  namespace: {{ .Release.Namespace }}
+  namespace: myapp
 spec:
   revisionHistoryLimit: 3
 {{- if not .Values.autoscaling.enabled }}
