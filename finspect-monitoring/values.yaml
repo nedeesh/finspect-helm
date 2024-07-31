@@ -1,0 +1,134 @@
+# NOTE This file holds all base app settings, but should always be over-ridden by an accopmanying 'environment specific' values.yaml file
+# Example:  
+#          -f values.yaml -f values-uat.yaml
+#
+# Environment specific settings may be something like: replicaCount   where you may want more pods in prod than in stage
+#
+
+# what environment is this?  
+environment: base
+
+app:  
+  configFile: application.yml 
+ 
+configMap: finspect-app-config
+
+mountPath: /app/config
+
+springConfigLocation: file:/app/config/application.yml  
+
+#sealedsecret:
+#  accerytifyPwSecret:
+#    name: accertify-authentication-pw-secret
+
+spec:
+  app: finspect-monitoring
+#  realtimeGatewayApp: fss-realtime-gateway
+  container:
+    port: 8080
+
+replicaCount: 3
+
+image:
+#  repository: docker.maven.incomm.com/fss/realtime-redemption-service
+  pullPolicy: Always
+  tag: "1.0.0"
+
+secrets:
+  accertify-authentication-pw: "see env files for actual values"
+
+service:
+  type: ClusterIP
+  port: 8080
+  targetPort: http
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 80
+  #targetMemoryUtilizationPercentage: 80
+
+####
+# All the below ones not required for now and will be removed later after checking with Gary.
+####
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+# securityContext: 
+#   capabilities:
+#     drop:
+#     - ALL
+#   readOnlyRootFilesystem: true
+#   runAsNonRoot: true
+#   runAsUser: 1000
+
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources:
+  limits:
+    cpu: 1500m
+    memory: 2Gi
+  requests:
+    cpu: 100m
+    memory: 1Gi
+
+livenessProbe:
+  failureThreshold: 3
+  successThreshold: 1
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  timeoutSeconds: 5
+readinessProbe:
+  failureThreshold: 3
+  successThreshold: 1
+  initialDelaySeconds: 60
+  periodSeconds: 5
+  timeoutSeconds: 5
+
+nodeSelector: {}
+
+tolerations: []
+
+priorityClass: high-preempt-incomm-pc
+
+#----------------------- sealed secrets ----------------------------------------------
+# at deployment time, you must override the strings below with an environment specific 'sealed-secret' string
+# you will do that by specifing a second 'environment specific' values.yaml file such as 'values-uat.yaml'
+#
+#encryptionOptionsSymmetricEncryptionKey: fakestring-you-must-override-this-with-a-real-environment-specific-string
+#dbConnectionUrl: fakestring-you-must-override-this-with-a-real-environment-specific-string
+#dbConnectionPassword: fakestring-you-must-override-this-with-a-real-environment-specific-string
+#cclFsApiOptionsKey: fakestring-you-must-override-this-with-a-real-environment-specific-string
+#
+#-------------------------------------------------------------------------------------
+
+

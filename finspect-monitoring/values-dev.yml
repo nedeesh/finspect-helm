@@ -1,0 +1,10 @@
+# what environment is this
+environment: "dev"
+
+metadata:
+  name: finspect-deployment
+    
+service:
+  metadata:
+    name: finspect-service
+
