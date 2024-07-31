@@ -32,10 +32,10 @@ spec:
                 topologyKey: kubernetes.io/hostname
               weight: 100
       priorityClassName: {{ .Values.priorityClass }}
-      volumes:
-        - name: app-config-volume
-          configMap:
-            name: {{ .Values.configMap }}
+#      volumes:
+#        - name: app-config-volume
+#          configMap:
+#            name: {{ .Values.configMap }}
       containers:
         - name: {{ .Values.spec.app }}-container
 #          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
@@ -52,15 +52,15 @@ spec:
 #                secretKeyRef:
 #                  name: {{ .Values.sealedsecret.accerytifyPwSecret.name }}
 #                  key: accertify-authentication-pw
-            - name: SPRING_PROFILES_ACTIVE
-              value: {{ .Values.environment | quote }}
-          volumeMounts:
-            - name: app-config-volume
-              mountPath: {{ .Values.mountPath }}
-          {{- with .Values.resources }}
-          resources:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
+#            - name: SPRING_PROFILES_ACTIVE
+#              value: {{ .Values.environment | quote }}
+#          volumeMounts:
+#            - name: app-config-volume
+#              mountPath: {{ .Values.mountPath }}
+#          {{- with .Values.resources }}
+#          resources:
+#            {{- toYaml . | nindent 12 }}
+#          {{- end }}
           livenessProbe:
             httpGet:
               path: /actuator/health
