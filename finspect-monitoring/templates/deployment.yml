@@ -39,7 +39,7 @@ spec:
       containers:
         - name: {{ .Values.spec.app }}-container
 #          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
-          image: nedeesh/monitoring:{{ .Values.image.tag }}
+          image: nedeesh/monitoring:1.0.0
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.spec.container.port }}
