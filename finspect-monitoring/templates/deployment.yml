@@ -52,7 +52,7 @@ spec:
 #            - containerPort: {{ .Values.spec.container.port }}
             - containerPort: 8080
               name: http
-          env:
+#          env:
 #            - name: SPRING_CONFIG_LOCATION
 #              value: {{ .Values.springConfigLocation }}
 #            - name: ACCERTIFY_SECRET
