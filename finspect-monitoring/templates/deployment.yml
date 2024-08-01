@@ -7,10 +7,10 @@ metadata:
 spec:
   revisionHistoryLimit: 3
 #{{- if not .Values.autoscaling.enabled }}
-{{- if not true }}
+#{{- if not true }}
 #  replicas: {{ .Values.replicaCount }}
   replicas: 4
-{{- end }}
+#{{- end }}
   selector:
     matchLabels:
 #      app: {{ .Values.spec.app }}
