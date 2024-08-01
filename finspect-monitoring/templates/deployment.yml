@@ -16,22 +16,22 @@ spec:
       labels:
         app: {{ .Values.spec.app }}
     spec:
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-            - podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app: {{ .Values.spec.app }}
-                topologyKey: topology.kubernetes.io/zone
-              weight: 100
-            - podAffinityTerm:
-                labelSelector:
-                  matchLabels:
-                    app: {{ .Values.spec.app }}
-                topologyKey: kubernetes.io/hostname
-              weight: 100
-      priorityClassName: {{ .Values.priorityClass }}
+#      affinity:
+#        podAntiAffinity:
+#          preferredDuringSchedulingIgnoredDuringExecution:
+#            - podAffinityTerm:
+#                labelSelector:
+#                  matchLabels:
+#                    app: {{ .Values.spec.app }}
+#                topologyKey: topology.kubernetes.io/zone
+#              weight: 100
+#            - podAffinityTerm:
+#                labelSelector:
+#                  matchLabels:
+#                    app: {{ .Values.spec.app }}
+#                topologyKey: kubernetes.io/hostname
+#              weight: 100
+#      priorityClassName: {{ .Values.priorityClass }}
 #      volumes:
 #        - name: app-config-volume
 #          configMap:
