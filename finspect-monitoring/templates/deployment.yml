@@ -1,20 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.spec.app }}-deployment
+#  name: {{ .Values.spec.app }}-deployment
+  name: finspect-deployment
   namespace: myapp
 spec:
   revisionHistoryLimit: 3
-{{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-{{- end }}  
+#{{- if not .Values.autoscaling.enabled }}
+{{- if not true }}
+#  replicas: {{ .Values.replicaCount }}
+  replicas: 2
+{{- end }}
   selector:
     matchLabels:
-      app: {{ .Values.spec.app }}
+#      app: {{ .Values.spec.app }}
+      app: finspect-monitoring
   template:
     metadata:
       labels:
-        app: {{ .Values.spec.app }}
+#        app: {{ .Values.spec.app }}
+        app: finspect-monitoring
     spec:
 #      affinity:
 #        podAntiAffinity:
@@ -37,12 +42,15 @@ spec:
 #          configMap:
 #            name: {{ .Values.configMap }}
       containers:
-        - name: {{ .Values.spec.app }}-container
+#        - name: {{ .Values.spec.app }}-container
+        - name: finspect-monitoring-container
 #          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           image: nedeesh/monitoring:1.0.0
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: Always
+#          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.spec.container.port }}
+#            - containerPort: {{ .Values.spec.container.port }}
+            - containerPort: 8080
               name: http
           env:
 #            - name: SPRING_CONFIG_LOCATION
@@ -61,22 +69,22 @@ spec:
 #          resources:
 #            {{- toYaml . | nindent 12 }}
 #          {{- end }}
-          livenessProbe:
-            httpGet:
-              path: /actuator/health
-              port: {{ .Values.spec.container.port }}
-            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
-            successThreshold: {{ .Values.livenessProbe.successThreshold }}
-            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
-            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
-          readinessProbe:
-            httpGet:
-              path: /actuator/health
-              port: {{ .Values.spec.container.port }}
-            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
-            successThreshold: {{ .Values.readinessProbe.successThreshold }}
-            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
-            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+#          livenessProbe:
+#            httpGet:
+#              path: /actuator/health
+#              port: {{ .Values.spec.container.port }}
+#            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
+#            successThreshold: {{ .Values.livenessProbe.successThreshold }}
+#            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+#            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+#            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+#          readinessProbe:
+#            httpGet:
+#              path: /actuator/health
+#              port: {{ .Values.spec.container.port }}
+#            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+#            successThreshold: {{ .Values.readinessProbe.successThreshold }}
+#            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+#            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+#            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
 
