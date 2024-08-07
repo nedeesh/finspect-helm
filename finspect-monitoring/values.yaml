@@ -8,29 +8,21 @@
 # what environment is this?  
 environment: base
 
-app:  
-  configFile: application.yml 
- 
-configMap: finspect-app-config
+app:
+  configFile: application.yml
+
 
 mountPath: /app/config
 
-springConfigLocation: file:/app/config/application.yml  
-
-#sealedsecret:
-#  accerytifyPwSecret:
-#    name: accertify-authentication-pw-secret
-
 spec:
   app: finspect-monitoring
-#  realtimeGatewayApp: fss-realtime-gateway
   container:
     port: 8080
 
 replicaCount: 3
 
 image:
-#  repository: docker.maven.incomm.com/fss/realtime-redemption-service
+  repository: docker.maven.incomm.com/finspect/monitoring-service
   pullPolicy: Always
   tag: "1.0.0"
 
@@ -65,7 +57,7 @@ serviceAccount:
 podAnnotations: {}
 
 podSecurityContext: {}
-  # fsGroup: 2000
+# fsGroup: 2000
 
 securityContext: {}
 # securityContext: 
@@ -82,7 +74,7 @@ ingress:
   className: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  # kubernetes.io/tls-acme: "true"
   hosts:
     - host: chart-example.local
       paths:

@@ -2,9 +2,12 @@
 environment: "dev"
 
 metadata:
-  name: finspect-deployment
-    
+  name: finspect-monitoring-deployment
+
 service:
   metadata:
-    name: finspect-service
+    name: finspect-monitoring-service
 
+image:
+  repository: docker.maven.incomm.com/finspect/monitoring-service
+  pullPolicy: Always
