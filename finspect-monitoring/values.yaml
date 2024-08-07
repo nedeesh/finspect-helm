@@ -19,7 +19,7 @@ spec:
   container:
     port: 8080
 
-replicaCount: 3
+replicaCount: 1
 
 image:
   repository: docker.maven.incomm.com/finspect/monitoring-service
