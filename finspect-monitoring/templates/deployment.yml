@@ -41,6 +41,10 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.environment | quote }}
+            - name: jasypt.encryptor.password
+              value: encAppPwdTmsFsService
+            - name: ENV APP_ENCRYPTION_PASSWORD
+              value: m5fesaDu
 #          livenessProbe:
 #            httpGet:
 #              path: /actuator/health
