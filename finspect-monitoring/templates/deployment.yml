@@ -34,7 +34,7 @@ spec:
 
       containers:
         - name: {{ .Values.spec.app }}-container
-          image: nedeesh/monitoring:1.0.2
+          image: nedeesh/monitoring:1.0.1
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.spec.container.port }}
