@@ -39,7 +39,7 @@ spec:
             - containerPort: {{ .Values.spec.container.port }}
               name: http
           volumeMounts:
-            - name: es-persistent-storage
+            - name: persistent-storage
               mountPath: /var/log/tms-fs-service
           env:
             - name: SPRING_PROFILES_ACTIVE
@@ -51,9 +51,9 @@ spec:
             - name: log.dir
               value: /var/log/tms-fs-service
           volumes:
-            - name: es-persistent-storage
+            - name: persistent-storage
               persistentVolumeClaim:
-                claimName: es-persistent-storage
+                claimName: pvc-name
 #          livenessProbe:
 #            httpGet:
 #              path: /actuator/health
