@@ -33,7 +33,7 @@ spec:
               weight: 100
       containers:
         - name: {{ .Values.spec.app }}-container
-          image: nedeesh/monitoring:1.0.1
+          image: nedeesh/monitoring:1.0.2
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.spec.container.port }}
