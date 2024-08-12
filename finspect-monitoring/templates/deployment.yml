@@ -38,6 +38,9 @@ spec:
           ports:
             - containerPort: {{ .Values.spec.container.port }}
               name: http
+          volumeMounts:
+            - name: es-persistent-storage
+              mountPath: /var/log/tms-fs-service
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.environment | quote }}
@@ -45,6 +48,12 @@ spec:
               value: encAppPwdTmsFsService
             - name: APP_ENCRYPTION_PASSWORD
               value: m5fesaDu
+            - name: log.dir
+              value: /var/log/tms-fs-service
+          volumes:
+            - name: es-persistent-storage
+              persistentVolumeClaim:
+                claimName: es-persistent-storage
 #          livenessProbe:
 #            httpGet:
 #              path: /actuator/health
