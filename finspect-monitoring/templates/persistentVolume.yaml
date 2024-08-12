@@ -10,8 +10,9 @@ spec:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
   storageClassName: local-storage
-  local:
-    path: "D:/coolMinds/projects/volume"
+  hostPath:
+    path: "D:/coolMinds/projects/volume1"
+    type: DirectoryOrCreate
   nodeAffinity:
     required:
       nodeSelectorTerms:
