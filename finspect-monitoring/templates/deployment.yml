@@ -45,22 +45,22 @@ spec:
               value: encAppPwdTmsFsService
             - name: APP_ENCRYPTION_PASSWORD
               value: m5fesaDu
-          livenessProbe:
-            httpGet:
-              path: /actuator/health
-              port: 8080
-            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
-            successThreshold: {{ .Values.livenessProbe.successThreshold }}
-            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
-            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
-          readinessProbe:
-            httpGet:
-              path: /actuator/health
-              port: 8080
-            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
-            successThreshold: {{ .Values.readinessProbe.successThreshold }}
-            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
-            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
-            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+#          livenessProbe:
+#            httpGet:
+#              path: /actuator/health
+#              port: 8080
+#            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
+#            successThreshold: {{ .Values.livenessProbe.successThreshold }}
+#            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+#            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+#            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+#          readinessProbe:
+#            httpGet:
+#              path: /actuator/health
+#              port: 8080
+#            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+#            successThreshold: {{ .Values.readinessProbe.successThreshold }}
+#            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+#            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+#            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
 
