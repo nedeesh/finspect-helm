@@ -48,7 +48,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /actuator/health
-              port: 9085
+              port: 8080
             failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
             successThreshold: {{ .Values.livenessProbe.successThreshold }}
             initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
@@ -57,7 +57,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /actuator/health
-              port: 9085
+              port: 8080
             failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
             successThreshold: {{ .Values.readinessProbe.successThreshold }}
             initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
