@@ -50,10 +50,10 @@ spec:
               value: m5fesaDu
             - name: log.dir
               value: /var/log/tms-fs-service
-          volumes:
-            - name: persistent-storage
-              persistentVolumeClaim:
-                claimName: pvc-name
+      volumes:
+        - name: persistent-storage
+          persistentVolumeClaim:
+            claimName: pvc-name
 #          livenessProbe:
 #            httpGet:
 #              path: /actuator/health
