@@ -31,6 +31,7 @@ spec:
                     app: {{ .Values.spec.app }}
                 topologyKey: kubernetes.io/hostname
               weight: 100
+
       containers:
         - name: {{ .Values.spec.app }}-container
           image: nedeesh/monitoring:1.0.2
@@ -40,7 +41,8 @@ spec:
               name: http
           volumeMounts:
             - name: persistent-storage
-              mountPath: /var/log/tms-fs-service
+              mountPath: /var/log
+#              mountPath: /var/log/tms-fs-service
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.environment | quote }}
@@ -49,7 +51,8 @@ spec:
             - name: APP_ENCRYPTION_PASSWORD
               value: m5fesaDu
             - name: log.dir
-              value: /var/log/tms-fs-service
+              value: /var/log
+#              value: /var/log/tms-fs-service
       volumes:
         - name: persistent-storage
           persistentVolumeClaim:
