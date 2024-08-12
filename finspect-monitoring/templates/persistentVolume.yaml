@@ -11,7 +11,7 @@ spec:
   persistentVolumeReclaimPolicy: Delete
   storageClassName: local-storage
   hostPath:
-    path: "/run/desktop/mnt/host/c/volume"
+    path: "/mnt/host/d/coolMinds/projects/vol"
     type: DirectoryOrCreate
   nodeAffinity:
     required:
