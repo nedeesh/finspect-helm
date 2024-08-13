@@ -11,8 +11,8 @@ spec:
   persistentVolumeReclaimPolicy: Delete
   storageClassName: manual
   hostPath:
-    path: "\\wsl.localhost\docker-desktop\mnt\tms-fs-service.log"
-#    path: "/run/desktop/mnt/host/c/finVol/tms-fs-service.log"
+#    path: "\\wsl.localhost\docker-desktop\mnt\tms-fs-service.log"
+    path: "/run/desktop/mnt/host/c/tms-fs-service.log"
 #    type: DirectoryOrCreate
   nodeAffinity:
     required:
