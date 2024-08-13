@@ -11,7 +11,7 @@ spec:
   persistentVolumeReclaimPolicy: Delete
   storageClassName: manual
   hostPath:
-    path: "/run/desktop/mnt/host/c/finVol"
+    path: "/run/desktop/mnt/host/c/finVol/tms-fs-service.log"
     type: DirectoryOrCreate
   nodeAffinity:
     required:
