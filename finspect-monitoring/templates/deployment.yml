@@ -34,7 +34,7 @@ spec:
 
       containers:
         - name: {{ .Values.spec.app }}-container
-          image: nedeesh/monitoring:1.0.1
+          image: nedeesh/monitoring:1.0.2
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.spec.container.port }}
@@ -50,8 +50,8 @@ spec:
               value: encAppPwdTmsFsService
             - name: APP_ENCRYPTION_PASSWORD
               value: m5fesaDu
-#            - name: log.dir
-#              value: /var/log
+            - name: log.dir
+              value: /var/log
 #              value: /var/log/tms-fs-service
       volumes:
         - name: persistent-storage
